@@ -9,6 +9,10 @@ import { WebBanner } from './components'
 import { WebListGroup } from './components'
 import { WebDropdown } from './components'
 import { WebAppBar } from './components'
+import { WebBreadcrumb } from './components'
+import { WebBreadcrumbItem } from './components'
+import { WebCard } from './components'
+import { WebDialog } from './components'
 
 export default {
   install: (app: App) => {
@@ -21,6 +25,10 @@ export default {
     app.component('WebListGroup', WebListGroup)
     app.component('WebDropdown', WebDropdown)
     app.component('WebAppBar', WebAppBar)
+    app.component('WebBreadcrumb', WebBreadcrumb)
+    app.component('WebBreadcrumbItem', WebBreadcrumbItem)
+    app.component('WebCard', WebCard)
+    app.component('WebDialog', WebDialog)
 
   },
 }
@@ -33,4 +41,10 @@ export {
   WebAvatar,
   WebBanner,
   WebListGroup,
+  WebDropdown,
+  WebAppBar,
+  WebBreadcrumb,
+  WebBreadcrumbItem,
+  WebCard,
+  WebDialog,
 };
