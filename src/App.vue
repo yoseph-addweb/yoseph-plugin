@@ -159,14 +159,14 @@
         <h3 class="font-bold uppercase text-2xl">List groups</h3>
         <hr class="w-5/12" />
         <div class="p-5 space-x-5">
-          <web-list-group :items="items" value="label" @select="selectedItem">
+          <web-list-group :items="items" @select="selectedItem">
           </web-list-group>
         </div>
 
         <h3 class="font-bold uppercase text-2xl">Dropdowns</h3>
         <hr class="w-5/12" />
         <div class="p-5 space-x-5">
-          <web-dropdown :items="items" value="label" @select="selectedItem">
+          <web-dropdown :items="items" @select="selectedItem">
           </web-dropdown>
         </div>
 

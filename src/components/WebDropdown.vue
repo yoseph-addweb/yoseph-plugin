@@ -42,9 +42,14 @@
 
 <script lang="ts" setup>
 import { ref } from "@vue/reactivity";
+import type { PropType } from "@vue/runtime-core";
+interface Item {
+  label: string;
+  value: string;
+}
 defineProps({
   items: {
-    type: Array,
+    type: Array as PropType<Item[]>,
   },
   label: {
     type: String,
