@@ -159,8 +159,8 @@
         <h3 class="font-bold uppercase text-2xl">List groups</h3>
         <hr class="w-5/12" />
         <div class="p-5 space-x-5">
-          <web-list-group :items="items" @select="selectedItem">
-          </web-list-group>
+<web-list-group :items="items" @select="selectedItem">
+</web-list-group>
         </div>
 
         <h3 class="font-bold uppercase text-2xl">Dropdowns</h3>
@@ -192,13 +192,13 @@
         <h3 class="font-bold uppercase text-2xl">Breadcrumb</h3>
         <hr class="w-5/12" />
         <div class="p-5 space-y-5">
-          <web-breadcrumb class="border p-3">
-            <web-breadcrumb-item
-              label="Home"
-              :first="true"
-            ></web-breadcrumb-item>
-            <web-breadcrumb-item label="About"></web-breadcrumb-item>
-          </web-breadcrumb>
+<web-breadcrumb class="border p-3">
+  <web-breadcrumb-item
+    label="Home"
+    :first="true"
+  ></web-breadcrumb-item>
+  <web-breadcrumb-item label="About"></web-breadcrumb-item>
+</web-breadcrumb>
         </div>
 
         <h3 class="font-bold uppercase text-2xl">Card</h3>
@@ -221,11 +221,24 @@
               Can coffee make you a better developer?
             </template>
             <template #description>
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                Voluptatibus quia, nulla! Maiores et perferendis eaque,
-                exercitationem praesentium nihil.
+              Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+              Voluptatibus quia, nulla! Maiores et perferendis eaque,
+              exercitationem praesentium nihil.
             </template>
           </web-card>
+        </div>
+
+        <h3 class="font-bold uppercase text-2xl">Pagination</h3>
+        <hr class="w-5/12" />
+        <div class="p-5 space-y-5">
+          <span
+            ><b class="uppercase">Selected page: </b>
+            <b class="text-lg">{{ pagination.page }}</b></span
+          >
+          <web-pagination
+            class="border p-3"
+            :pagination="pagination"
+          ></web-pagination>
         </div>
       </div>
     </div>
@@ -243,6 +256,15 @@ const items = reactive([
   { label: "Item 5" },
   { label: "Item 6" },
 ]);
+
+let pagination = reactive({
+  total_items: 100,
+  pages: 7,
+  page: 1,
+  items: 10,
+  next_page: 2,
+  previous_page: null,
+});
 
 const menu_items = reactive([
   { label: "Documents", link: "#Docs" },
