@@ -8,4 +8,3 @@ const app = createApp(Page);
 
 app.use(WebPlugin);
 app.mount('#app');
-[]

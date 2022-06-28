@@ -1,14 +1,17 @@
 <template>
-  <div :class="[bgColor]" class="p-6 w-9/12 mb-6 bg-brand-blue rounded">
-    <div class="relative bg-white flex items-center rounded overflow-hidden">
+  <div :class="[bgColor]" class="pb-6 w-full mb-6 bg-brand-blue rounded banner">
+    <div
+      class="w-9/12 mx-auto relative bg-white flex items-center rounded overflow-hidden"
+      style="height: 450px"
+    >
       <img class="absolute bottom-0 left-0 h-12 -mb-4" :src="alt_img" />
       <div
-        class="absolute top-0 left-0 right-0 h-12 -mt-4 flex justify-end lg:justify-center"
+        class="absolute top-0 left-0 right-0 -mt-4 flex justify-end lg:justify-center"
       >
         <img class="h-12" :src="alt_img" />
       </div>
-      <div class="px-8 py-12 w-full">
-        <div class="max-w-md text-sm mb-4 mx-auto">
+      <div class="py-24 w-full z-10">
+        <div class="max-w-2xl text-sm mb-4 pl-24">
           <h2 class="font-semibold text-xl mb-4">
             {{ title }}
           </h2>
@@ -18,27 +21,20 @@
             <slot class="text"></slot>
           </p>
           <p class="mb-4 text-secondary text-sm">
-            <slot class="text">
-              <a
-                class="underline hover:no-underline font-semibold hover:cursor-pointer"
-                ><strong>Contact us!</strong></a
-              >
-            </slot>
+            <slot class="text" name="action"> </slot>
           </p>
         </div>
       </div>
-      <div class="hidden lg:block p-8 flex-shrink-0 ml-auto">
-        <a class="relative group block w-64 h-64 text-center">
-          <img class="absolute inset-0 ml-auto" :src="img" alt="" />
-          <img class="relative inline-block mx-auto h-8 mt-5" :src="alt_img" />
-          <div>
-            <span
-              class="relative inline-block mx-auto mt-4 py-2 px-3 bg-brand-blue-mid group-hover:bg-brand-blue-darker text-white text-xs font-semibold rounded"
-            >
-              <slot name="img-text">Try Shuffle Editor for Free</slot>
-            </span>
-          </div>
-        </a>
+      <div class="absolute text-right right-0 z-0">
+        <img class="w-9/12 float-right" :src="img" alt="" />
+        <img class="absolute right-0 bottom-20 h-16 mt-5" :src="alt_img" />
+        <div>
+          <span
+            class="relative inline-block mx-auto mt-4 py-2 px-3 bg-brand-blue-mid group-hover:bg-brand-blue-darker text-white text-xs font-semibold rounded"
+          >
+            <slot name="img-text">Image slogan goes here</slot>
+          </span>
+        </div>
       </div>
     </div>
   </div>
@@ -50,8 +46,6 @@ import { computed } from "@vue/runtime-core";
 const props = defineProps({
   img: {
     type: String,
-    default:
-      "https://shuffle.dev/vendor/shuffle/img/components/shuffle-editor.png",
   },
   alt_img: {
     type: String,

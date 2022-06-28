@@ -1,21 +1,5 @@
 <template>
   <div class="bg-gray-200 pt-16 min-h-screen bg-dark">
-    <div class="w-9/12 mx-auto">
-      <h4 class="uppercase text-4xl font-bold">Web Ui documentation</h4>
-      <p>
-        Web UI library provides you a set of ready-made UI components like
-        buttons, inputs, dialogs, etc.
-      </p>
-      <h2 class="text-lg mt-2 font-bold">Installation</h2>
-      <p class="">To install the package, run the following command:</p>
-      <img class="ml-24" src="/install.png" alt="" />
-
-      <p class="">
-        Import web ui package in your
-        <span class="font-bold">'./src/main.ts' file</span>:
-      </p>
-      <img class="ml-24" src="/import.png" alt="" />
-    </div>
     <div
       class="w-9/12 mx-auto bg-gray-100 shadow-lg mt-3"
       style="background-color: #fafafa"
@@ -28,11 +12,42 @@
           <web-button> Flat btn </web-button>
 
           <!-- //Web button with background -->
-          <web-button class="rounded-lg bg-pink-700">Rounded</web-button>
+          <web-button class="rounded-lg" color="pink">Rounded</web-button>
 
           <!-- //Web Rounded button -->
-          <web-button class="rounded-full bg-blue-600">Rounded</web-button>
+          <web-button class="rounded-full" color="blue">Rounded</web-button>
 
+          <!-- //Web Rounded button with loading animation -->
+          <web-button
+            class="rounded-full"
+            color="indigo"
+            :loading="loading"
+            @click="loading = false"
+            >Loading....</web-button
+          >
+
+          <!-- //Web text button  -->
+          <web-button color="indigo" text="true">Text</web-button>
+
+          <!-- //Web Rounded button -->
+          <web-button class="rounded-full" icon="true" color="blue">
+            <template #icon>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
+                <!--! Font Awesome Pro 6.1.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. -->
+                <path
+                  d="M438.6 105.4C451.1 117.9 451.1 138.1 438.6 150.6L182.6 406.6C170.1 419.1 149.9 419.1 137.4 406.6L9.372 278.6C-3.124 266.1-3.124 245.9 9.372 233.4C21.87 220.9 42.13 220.9 54.63 233.4L159.1 338.7L393.4 105.4C405.9 92.88 426.1 92.88 438.6 105.4H438.6z"
+                />
+              </svg>
+            </template>
+            Icon btn
+          </web-button>
+        </div>
+
+        <h5 class="pl-5 uppercase text-lg text-gray-500 mt-4">
+          Floating action button
+        </h5>
+        <hr class="w-7/12" />
+        <div class="pl-10 space-x-5 mt-3 w-10/12">
           <!-- //Web floating action button -->
           <web-fab class="bg-green-700">
             <template v-slot:icon>
@@ -88,9 +103,34 @@
           </web-fab>
         </div>
 
-        <div>
-          <img src="/btn_code.png" alt="" class="px-10" />
+        <h3 class="font-bold uppercase text-2xl">Text input</h3>
+        <hr class="w-5/12" />
+        <div class="p-5 space-y-5">
+          <web-text placeholder="Start typing to search ...">
+            <template #icon>
+              <svg
+                class="w-5 h-5 text-gray-500 dark:text-gray-400"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+                ></path>
+              </svg>
+            </template>
+            <template #btn>
+              <web-button class="text-sm" color="blue">Search</web-button>
+            </template>
+          </web-text>
         </div>
+        <!-- <div>
+          <img src="/btn_code.png" alt="" class="px-10" />
+        </div> -->
 
         <h3 class="font-bold uppercase text-2xl mt-8">Alerts</h3>
         <hr class="w-7/12" />
@@ -159,8 +199,8 @@
         <h3 class="font-bold uppercase text-2xl">List groups</h3>
         <hr class="w-5/12" />
         <div class="p-5 space-x-5">
-<web-list-group :items="items" @select="selectedItem">
-</web-list-group>
+          <web-list-group :items="items" @select="selectedItem">
+          </web-list-group>
         </div>
 
         <h3 class="font-bold uppercase text-2xl">Dropdowns</h3>
@@ -192,13 +232,13 @@
         <h3 class="font-bold uppercase text-2xl">Breadcrumb</h3>
         <hr class="w-5/12" />
         <div class="p-5 space-y-5">
-<web-breadcrumb class="border p-3">
-  <web-breadcrumb-item
-    label="Home"
-    :first="true"
-  ></web-breadcrumb-item>
-  <web-breadcrumb-item label="About"></web-breadcrumb-item>
-</web-breadcrumb>
+          <web-breadcrumb class="border p-3">
+            <web-breadcrumb-item
+              label="Home"
+              :first="true"
+            ></web-breadcrumb-item>
+            <web-breadcrumb-item label="About"></web-breadcrumb-item>
+          </web-breadcrumb>
         </div>
 
         <h3 class="font-bold uppercase text-2xl">Card</h3>
@@ -235,10 +275,6 @@
             ><b class="uppercase">Selected page: </b>
             <b class="text-lg">{{ pagination.page }}</b></span
           >
-          <web-pagination
-            class="border p-3"
-            :pagination="pagination"
-          ></web-pagination>
         </div>
       </div>
     </div>
@@ -246,7 +282,7 @@
 </template>
 
 <script lang="ts" setup>
-import { reactive } from "@vue/reactivity";
+import { reactive, ref } from "@vue/reactivity";
 
 const items = reactive([
   { label: "Item 1" },
@@ -271,6 +307,8 @@ const menu_items = reactive([
   { label: "Examples", link: "#Examples" },
   { label: "Blog", link: "#Blog" },
 ]);
+
+const loading = ref(true);
 
 function selectedItem(item: { label: string }) {
   console.log(item);

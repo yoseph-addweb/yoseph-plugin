@@ -14,6 +14,7 @@ import { WebBreadcrumbItem } from './components'
 import { WebCard } from './components'
 import { WebDialog } from './components'
 import { WebPagination } from './components'
+import { WebText } from './components'
 
 export default {
   install: (app: App) => {
@@ -31,6 +32,7 @@ export default {
     app.component('WebCard', WebCard)
     app.component('WebDialog', WebDialog)
     app.component('WebPagination', WebPagination)
+    app.component('WebText', WebText)
 
   },
 }
@@ -50,4 +52,5 @@ export {
   WebCard,
   WebDialog,
   WebPagination,
+  WebText,
 };
